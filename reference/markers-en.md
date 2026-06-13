@@ -88,11 +88,18 @@ High-frequency post-2023 words that co-occur:
 - em dash "—" well above normal density, used for "punchy" pauses
 - mechanical **bold** on scattered phrases
 - inline-header bullet lists: "**Performance:** …" throughout
-- emoji in headings/bullets (🚀 💡 ✅)
+- **decorative emoji markers** prefixing headings/list items (🚀 Launch,
+  💡 Key insight, ✅ Next steps) — one "corporate" emoji per bullet, in neat rows
 - Title Case In Every Heading
 - curly quotes "…" instead of straight quotes
 
 > Weak alone — many humans format this way. Count only alongside categories 1–8.
+
+> **Emoji, specifically:** only the *decorative structural* pattern above
+> (emoji as section/bullet markers from the 🚀💡✅🔥⚡🎯 set) is an AI tell.
+> Emoji used **inline, reactively, emotionally** ("this is peak 🔥", "I'm dead
+> 💀😂") are a *human* signal (Reddit/social) and count toward the person, not
+> against. Never penalize a text for emoji as such. Full rule: SKILL.md, "Правило: ИИ-эмодзи".
 
 ---
 
