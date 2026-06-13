@@ -1,149 +1,133 @@
+<!-- Language: **English** · [Русский](README.ru.md) -->
+**English** · [Русский](README.ru.md)
+
 # ai-slop-cleaner-en-ru
 
-**Чистильщик и детектор ИИ-сгенерированного текста для Claude Code / Claude Agent SDK.**
-Двуязычный (EN + RU) скилл: главное — **вычищает ИИ из текста**, переписывая штампы
-на живой язык с сохранением смысла, фактов и терминов; а также ставит диагноз
-«иишности» (насколько похож на нейро-слоп, по каким маркерам, с какой уверенностью).
+**An AI-slop cleaner and detector for Claude Code / the Claude Agent SDK.**
+A bilingual (EN + RU) skill: above all it **cleans the AI out of text**, rewriting
+clichés into natural prose while preserving meaning, facts and terms — and it also
+diagnoses "AI-likeness" (how machine-written a passage is, by which markers, with
+what confidence).
 
-## English
+## What it does
 
-A bilingual (English + Russian) Claude skill that **cleans the AI out of text** —
-and detects it. Give it an article, forum post, PR description, essay or comment and it:
+Give it an article, forum post, PR description, essay or comment and it:
 
 - **rewrites the slop out** into natural human prose, preserving every fact, number,
-  term, quote and code block (it never invents content);
+  term, quote and code block — it never invents content;
 - or, on request, just **screens** the text: rates its "AI-likeness", lists the exact
-  markers it found, and honestly reports confidence (AI detection is unreliable —
-  translation, editing and good writers all cause false positives).
+  markers it found, and honestly reports confidence. AI detection is unreliable —
+  translation, editing and plain good writers all cause false positives, and the
+  skill says so instead of pretending otherwise.
 
-It works in both languages — English tells follow Wikipedia's "Signs of AI writing",
-Russian tells cover everyday clichés plus the Habr/vc.ru tech-blog style ("под капотом",
-"давайте разберёмся"). It also tells **decorative AI emoji** (🚀 / 💡 / ✅ as heading
-and bullet markers) apart from **genuine human emoji** (reactive, in-sentence — "this
-is peak 🔥", "I'm dead 💀"): the former is a tell and gets stripped when cleaning, the
-latter counts toward a human author. Scoring is a calibrated judgment, not rigid
-point-math — the skill is deliberately not boxed into a fixed template.
+It works in both languages. English tells follow Wikipedia's "Signs of AI writing";
+Russian tells cover everyday clichés plus the Habr/vc.ru tech-blog style ("под
+капотом", "давайте разберёмся").
 
-```bash
-git clone https://github.com/tuwulalo/ai-slop-cleaner-en-ru.git ~/.claude/skills/ai-slop-cleaner-en-ru
-```
+It also tells **decorative AI emoji** apart from **genuine human emoji**:
 
-Then ask in plain language: "clean the AI slop out of this", "rewrite this like a
-human", or "was this written by a neural network?".
+- AI emoji = cold section markers prefixing headings/bullets (🚀 Launch, 💡 Key idea,
+  ✅ Next steps), one "corporate" emoji per item — that's a tell, and it gets stripped
+  when cleaning;
+- human emoji = hot, reactive, in-sentence ("this is peak 🔥", "I'm dead 💀😂") — that
+  counts *toward* a human author.
 
----
+Emoji on their own are never treated as slop. Scoring is a calibrated judgment, not
+rigid point-math — the skill is deliberately not boxed into a fixed template.
 
-## Зачем
+## What it catches
 
-ИИ-текст выдаёт не отдельное слово, а **плотность штампов + однородность + полное
-отсутствие живого**. `ai-slop-cleaner-en-ru` ищет именно связку сигналов, а не одну фразу,
-и честно сообщает уверенность — потому что детекторы ИИ в принципе ненадёжны
-(перевод, вычитка и хороший редактор дают ложные срабатывания).
-
-Ловит, среди прочего:
-
-- русские штампы: «важно отметить», «не просто X, а Y», «в современном мире»,
-  «играет ключевую роль», обтекаемое «эксперты считают»;
-- техно-блоговый слоп (Habr/vc.ru): **«под капотом»**, «давайте разберёмся»,
+- Russian clichés: «важно отметить», «не просто X, а Y», «в современном мире»,
+  «играет ключевую роль», vague «эксперты считают»;
+- Russian tech-blog slop (Habr/vc.ru): **«под капотом»**, «давайте разберёмся»,
   «разложим по полочкам», «и вот тут на сцену выходит»;
-- английские tells по гайду Wikipedia: "not just… it's a testament", "delve",
-  "pivotal role", AI-vocabulary кластеры;
-- структуру: правило трёх, ровный ритм, шаблонные «Введение/Заключение/Перспективы»,
-  **декоративные эмодзи-маркеры** в заголовках/буллетах (🚀 Запуск, 💡 Идея),
-  восторженные концовки;
-- и **контр-сигналы** живого человека (опечатки, сленг, личные числа, спор,
-  обращения к собеседнику, **живые реактивные эмодзи** внутри фраз), которые
-  снижают оценку.
+- English tells (Wikipedia AI Cleanup): "not just… it's a testament", "delve",
+  "pivotal role", AI-vocabulary clusters;
+- structure: the rule of three, uniform rhythm, boilerplate
+  "Intro / Conclusion / Future prospects" sections, decorative emoji markers,
+  empty upbeat endings;
+- and **human counter-signals** (typos, slang, personal numbers, argument, replies
+  to other people, live reactive emoji) that lower the score.
 
-Важно про эмодзи: скилл различает **ИИ-эмодзи** (холодный декор-маркер в начале
-заголовка/пункта) и **человеческие** (горячие, реактивные, внутри фразы — «это
-база 🔥», «я в голос 💀»). Первое — улика ИИ и вырезается при чистке; второе —
-наоборот, признак живого автора. Эмодзи сами по себе никогда не считаются слопом.
-Оценка — это **взвешенное суждение, а не арифметика по баллам**: никаких жёстких
-шаблонов, которые загоняют модель в рамки.
+## What the output looks like
 
-А потом, если попросишь, **переписывает** помеченные места: «важно отметить» →
-факт, «не просто X, а Y» → нормальная фраза, «под капотом» → объяснение по делу —
-и возвращает живой голос в меру жанра (док сухо, блог с характером).
+There is no fixed form — the skill answers in plain language and adapts to the text
+and the question (a yes/no gets a one-liner; "break it down" gets a full pass).
+Roughly:
 
-## Что на выходе
+> **Almost certainly AI (~95/100), medium confidence.**
+> Decisive: "the cache isn't just storage, it's a whole acceleration mechanism"
+> (negative parallelism) + a double "under the hood" with zero specifics. Plus
+> "hard to overstate the role of" and a 🚀 emoji heading. Nothing human: no numbers,
+> no first-hand experience. No counter-signals.
 
-Жёсткого бланка нет — скилл отвечает живым языком и подстраивается под текст и
-вопрос (просят «да/нет» — коротко, просят разбор — подробно). Примерно так:
+The number is a ballpark, not a precise figure, and confidence is stated honestly
+(short text → low confidence).
 
-> **Почти точно ИИ (~95/100), уверенность средняя.**
-> Решающее: связка «кэш — это не просто хранилище, а целый механизм» (негативный
-> параллелизм) + двойной «под капотом» при полном отсутствии конкретики. Плюс
-> «сложно переоценить роль» и эмодзи-заголовок 🚀. Живого — ноль: ни чисел, ни
-> личного опыта. Контр-сигналов нет.
+## Install
 
-Форма свободная: число даётся как ориентир-вилка, а не точная цифра, и скилл
-честно оговаривает уверенность (на коротком тексте — низкая).
-
-## Установка
-
-### Claude Code (как пользовательский скилл)
+### Claude Code (as a user skill)
 
 ```bash
 git clone https://github.com/tuwulalo/ai-slop-cleaner-en-ru.git ~/.claude/skills/ai-slop-cleaner-en-ru
 ```
 
-На Windows:
+On Windows:
 
 ```powershell
 git clone https://github.com/tuwulalo/ai-slop-cleaner-en-ru.git "$env:USERPROFILE\.claude\skills\ai-slop-cleaner-en-ru"
 ```
 
-Перезапусти Claude Code — скилл подхватится автоматически и будет срабатывать,
-когда ты просишь вычистить ИИ из текста или проверить текст на ИИ.
+Restart Claude Code — the skill is picked up automatically and triggers when you ask
+to clean AI out of a text or to check a text for AI.
 
-### Как проект-скилл (для команды/репозитория)
+### As a project skill (for a team/repo)
 
-Положи папку в `.claude/skills/ai-slop-cleaner-en-ru` внутри своего проекта и закоммить —
-скилл станет доступен всем, кто работает с репозиторием.
+Drop the folder into `.claude/skills/ai-slop-cleaner-en-ru` inside your project and
+commit it — the skill becomes available to everyone working in the repository.
 
-## Использование
+## Usage
 
-Просто попроси на естественном языке:
+Just ask in plain language:
 
-- «Проверь этот текст на ИИ» + вставь отрывок
-- «Это писала нейросеть?» + ссылка на статью
-- «Вычисти ИИ из этого текста» / «перепиши по-человечески, убери слоп»
-- «Прогони все .md в docs/ на слоп, дай таблицу»
-- “Screen this PR description for AI slop, then clean it”
+- "Was this written by a neural network?" + paste a passage
+- "Clean the AI out of this" / "rewrite this like a human, kill the slop"
+- "Is this AI?" + a link to an article
+- "Screen every .md in docs/ for slop and give me a table"
+- «Вычисти ИИ из этого текста» / «проверь, не нейросеть ли это писала»
 
-Режимы: диагноз одного текста (полный отчёт), **чистка** (переписать + лог правок +
-новая оценка), пакетно по файлам (таблица + разбор худших), быстрый «да/нет»,
-по URL (через WebFetch).
+Modes: diagnose one text (full report), **clean** (rewrite + change log + new score),
+batch over files (table + breakdown of the worst), quick yes/no, or by URL (via
+WebFetch).
 
-## Структура
+## Layout
 
 ```
 ai-slop-cleaner-en-ru/
-├── SKILL.md                  # инструкция скилла (детект + чистка), правило про эмодзи
+├── SKILL.md                  # skill instructions (detect + clean), the emoji rule
 ├── reference/
-│   ├── markers-ru.md         # русские маркеры (общие + техно-блог)
-│   ├── markers-en.md         # английские маркеры (Wikipedia AI Cleanup)
-│   ├── human-signals.md      # контр-сигналы живого человека
-│   ├── scoring.md            # рубрика оценки и пороги вердиктов
-│   └── rewrite.md            # режим чистки: таблицы «штамп → живая замена»
+│   ├── markers-ru.md         # Russian markers (general + tech-blog)
+│   ├── markers-en.md         # English markers (Wikipedia AI Cleanup)
+│   ├── human-signals.md      # human counter-signals
+│   ├── scoring.md            # scoring anchors and verdict bands
+│   └── rewrite.md            # cleaning mode: "cliché → natural replacement" tables
 └── examples/
-    └── examples.md           # размеченные образцы для калибровки
+    └── examples.md           # annotated samples for calibration
 ```
 
-## Чего скилл НЕ делает
+## What it does NOT do
 
-- Не «доказывает» авторство — даёт вероятностный вердикт с уверенностью.
-- При чистке не выдумывает фактов и не трогает числа, термины, цитаты и код —
-  убирает штампы, а не содержание.
-- Не заменяет здравый смысл: на коротком тексте (<120 слов) уверенность всегда низкая.
+- It doesn't "prove" authorship — it gives a probabilistic verdict with a confidence level.
+- When cleaning it invents no facts and doesn't touch numbers, terms, quotes or code —
+  it removes clichés, not content.
+- It doesn't replace judgment: on short text (<120 words) confidence is always low.
 
-## Источники паттернов
+## Sources of the patterns
 
 - [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) (WikiProject AI Cleanup)
 - [Википедия: Признаки сгенерированности текста](https://ru.wikipedia.org/wiki/Википедия:Признаки_сгенерированности_текста)
-- Разборы клише ChatGPT/DeepSeek на vc.ru, otzyvmarketing, Skillbox; наблюдения за стилем Habr/vc.ru.
+- Breakdowns of ChatGPT/DeepSeek clichés on vc.ru, otzyvmarketing, Skillbox; observations of the Habr/vc.ru style.
 
-## Лицензия
+## License
 
-MIT — см. [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
