@@ -1,169 +1,36 @@
-# English AI-text markers
+# AI-text devices — principles (EN)
 
-Source: Wikipedia "Signs of AI writing" (WikiProject AI Cleanup), distilled into
-detection signals. Each marker is a **signal, not proof** — weigh density and
-co-occurrence (see `scoring.md`). Weight noted per category.
+Same catalogue as `markers-ru.md`, applied to English. Recognise the **device**,
+not a phrase list — the surface wording you already know. Below are the device
+classes plus what's specific to English. Judge by density + co-occurrence + the
+absence of human noise, never a single match.
 
----
+## Device classes (shared with the core)
 
-## 1. Inflated significance / legacy puffery — WEIGHT HIGH
+Significance-padding; scale/legacy inflation; negative parallelism (defensive
+"deny-the-plain, substitute-the-grand" frame); copula avoidance (elaborate
+constructions instead of plain "is/has"); the host's invitation-to-explore
+connective instead of just explaining; participle / "-ing" tail clauses that add
+fake depth without a fact; the rule of three; vague attribution to unnamed
+authorities; hedge pile-ups with no real uncertainty; formal connectives opening
+consecutive sentences/paragraphs; clusters of post-2023 "AI-vocabulary" analysis
+words that travel together; encyclopedic parenthetical glosses of nicknames;
+boilerplate "intro → even body → challenges → future-prospects" structure with an
+empty upbeat close; leftover chatbot artifacts (polite service lines, "as an AI"
+disclaimers, training-cutoff caveats) — near-proof; flawless form with zero voice.
 
-- "stands as / serves as a testament", "plays a vital/crucial/pivotal/key role"
-- "marks a turning point", "represents a shift", "underscores its importance"
-- "leaves a lasting/indelible mark", "in the ever-evolving landscape of"
-- "reflects a broader", "setting the stage for", "deeply rooted"
-- transition/scaffolding clichés: "when it comes to", "in conclusion",
-  "let's dive in / let's explore", "in the realm of"
+## English-specific emphases
 
-> Why: pads importance instead of stating the fact.
+- **The "-ing" participle gloss** is especially common in English: a sentence
+  closing on a present-participle clause that asserts importance but adds no fact.
+- **AI-vocabulary register** is more lexically marked in English — a recognisable
+  band of "analysis" words appearing together is a strong cluster signal.
+- **Title Case in every heading** and curly-quote / em-dash typographic fingerprints
+  are weak-on-their-own signals; count only alongside the content devices.
 
----
+## Emoji, register, calibration
 
-## 2. Negative parallelism — WEIGHT HIGH
-
-- "It's not just X, it's Y", "not only… but also…", "isn't merely… it's…"
-
-> The single stickiest AI tell. One is fine; two-plus per piece is damning.
-
----
-
-## 3. AI vocabulary cluster — WEIGHT HIGH (in clusters)
-
-High-frequency post-2023 words that co-occur:
-
-> Additionally, Moreover, Furthermore, delve, intricate, intricacies, tapestry,
-> testament, underscore, leverage, foster, garner, robust, seamless, vibrant,
-> pivotal, crucial, realm, landscape (abstract), navigate (figurative),
-> elevate, harness, unlock, embark, showcase, resonate, holistic.
-
-> Why: one is nothing; five different ones in a short passage is a strong cluster.
-
----
-
-## 4. Superficial "-ing" tails — WEIGHT MEDIUM
-
-- "…, highlighting the importance of…", "…, ensuring…", "…, reflecting…",
-  "…, fostering…", "…, ultimately contributing to…"
-
-> Test: delete the tail — meaning unchanged. Fake depth.
-
----
-
-## 5. Rule of three — WEIGHT MEDIUM
-
-- "fast, reliable, and scalable", "innovation, inspiration, and insight"
-
-> AI forces triads to feel "complete." Count consecutive ones.
-
----
-
-## 6. Vague attribution / weasel + hedging — WEIGHT MEDIUM
-
-- "experts believe", "studies show" (no cite), "it is widely regarded",
-  "some critics argue", "industry reports suggest"
-- hedge pileups: "may potentially", "could arguably", "in some cases"
-
----
-
-## 7. Formulaic structure & conclusions — WEIGHT MEDIUM
-
-- "Challenges and Future Prospects", "Despite its… faces several challenges…
-  Despite these challenges…"
-- empty upbeat endings: "The future looks bright", "exciting times lie ahead",
-  "a journey toward excellence"
-
----
-
-## 8. Chatbot correspondence artifacts — WEIGHT HIGH (near-proof)
-
-- "Certainly!", "Of course!", "You're absolutely right!", "Great question!"
-- "I hope this helps", "Let me know if…", "Here's a…"
-- "As an AI language model", "As of my last training update", "as of [date]"
-- "While specific details are limited…"
-
-> Direct evidence the text was pasted from a chat and never edited.
-
----
-
-## 9. Typography & formatting — WEIGHT LOW (only in sum)
-
-- em dash "—" well above normal density, used for "punchy" pauses
-- mechanical **bold** on scattered phrases
-- inline-header bullet lists: "**Performance:** …" throughout
-- **decorative emoji markers** prefixing headings/list items (🚀 Launch,
-  💡 Key insight, ✅ Next steps) — one "corporate" emoji per bullet, in neat rows
-- Title Case In Every Heading
-- curly quotes "…" instead of straight quotes
-
-> Weak alone — many humans format this way. Count only alongside categories 1–8.
-
-> **Emoji, specifically:** only the *decorative structural* pattern above
-> (emoji as section/bullet markers from the 🚀💡✅🔥⚡🎯 set) is an AI tell.
-> Emoji used **inline, reactively, emotionally** ("this is peak 🔥", "I'm dead
-> 💀😂") are a *human* signal (Reddit/social) and count toward the person, not
-> against. Never penalize a text for emoji as such. Full rule: SKILL.md, "Правило: ИИ-эмодзи".
-
----
-
-## 10. Encyclopedic parenthetical glosses — WEIGHT MEDIUM
-
-A bracketed aside that spells out a nickname / common name / synonym like a
-dictionary entry. Reads AI-ish, especially in a formal piece — real people either
-just use the nickname or drop it casually, without a bookish "(commonly known as)".
-
-- "(commonly known as X)", "(also known as / a.k.a. X)", "(colloquially X)"
-- "(or simply X)", "(for short, X)", "(often called X)"
-- "(as the community calls it)"
-- general template: `(<filler> + name/nickname)` added for "completeness", not need
-
-> Why: an encyclopedic reflex — gloss every name. One in a news/official post
-> already shows. **Register nuance:** strong tell in formal/news text; a light
-> casual aside in a blog/forum ("everyone just calls it kimi") is fine — don't
-> penalize. It's the stiff bookish "(commonly known as …)" that's the tell, not
-> the nickname itself. When cleaning, drop it or introduce the nickname naturally.
-
----
-
-## 11. Short-message formatting (chat / DM / email) — WEIGHT HIGH in that context
-
-In a short personal message (a DM, a Slack/Telegram note, an email to a boss/
-colleague) the AI gives itself away through **form**, not words — everything is too
-neat and groomed:
-
-- **colon setup "X: <list/explanation>"** — "The short version:", "Quick context:",
-  "Here's the thing:", "Bottom line:". People rarely set up a casual message with a colon — they just say it.
-- **a blank line between every paragraph** in a short message — the AI splits even a
-  three-sentence DM into tidy blocks. People text in one block or a single line
-  break, not a double break after every paragraph.
-- **the three-act template:** "greeting + ask → justification with a rule-of-three →
-  polite CTA" ("Hi X, I'd like to discuss… / I shipped A, B and C / let me know what
-  works"). Very AI for a short message.
-- **em dash as a "dramatic pause"** in casual text.
-- **perfect numeric typography** — "20–30 min", "+20%" with a real en-dash, where
-  people type "20-30", "20%".
-- **tidy formulaic closers** — "Happy to discuss further", "Let me know what works
-  for you", "Looking forward to your thoughts".
-
-> Why: in a short personal message the AI compensates for missing voice with perfect
-> form. A human writes rougher — one block, no colon setups, a plain dash or comma,
-> often no separate call-to-action at all.
->
-> **Register nuance (critical):** this is for chat/DM/email, not articles (where
-> paragraph breaks and colons are normal). Context decides: a personal message is
-> not a longread.
-
----
-
-## Quick Grep hooks (batch triage, not verdict)
-
-```
-\bnot just\b.{1,40}\bit'?s\b|not only\b.{1,40}\bbut also\b
-\b(testament|pivotal|crucial|delve|intricate|tapestry|seamless|robust)\b
-\b(moreover|furthermore|additionally)\b
-stands as|serves as|plays a (vital|crucial|key|pivotal) role
-when it comes to|in conclusion|let'?s (dive|explore)|in the realm of
-experts believe|studies show|it is widely regarded
-\b(certainly|of course)!|i hope this helps|great question
-ever-evolving|lasting (impact|legacy)|future looks bright
-\((commonly|also|otherwise) known as|\(a\.?k\.?a\.?|\(or simply|\(for short
-```
+Same as the core: only the decorative section-marker emoji pattern is a tell;
+inline reactive emoji count toward a human. Dry technical/scientific style is the
+genre, not generation — what decides is significance-padding and filler, not
+formality. The full reasoning lives in `markers-ru.md` and `SKILL.md`.

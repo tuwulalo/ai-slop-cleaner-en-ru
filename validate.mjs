@@ -48,8 +48,9 @@ const allowed = new Set(['name', 'description', 'license', 'compatibility', 'met
 const unknown = Object.keys(fields).filter(k => !allowed.has(k));
 ck(unknown.length === 0, 'no non-spec top-level keys', unknown.join(',') || 'none');
 ck(md.split('\n').length <= 500, 'SKILL.md <= 500 lines', md.split('\n').length + '');
-for (const r of ['reference/markers-ru.md', 'reference/markers-en.md', 'reference/human-signals.md',
-                 'reference/scoring.md', 'reference/rewrite.md', 'examples/examples.md'])
+for (const r of ['reference/markers-ru.md', 'reference/markers-en.md', 'reference/markers-fiction.md',
+                 'reference/markers-shortform.md', 'reference/structural-signals.md',
+                 'reference/human-signals.md', 'reference/scoring.md', 'reference/rewrite.md'])
   ck(existsSync(join(dir, r)), 'referenced file exists: ' + r);
 
 let pass = true;

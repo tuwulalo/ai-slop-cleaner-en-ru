@@ -139,45 +139,31 @@ WebFetch).
 ai-slop-cleaner-en-ru/
 ├── SKILL.md                  # skill instructions (detect + clean), the emoji rule
 ├── reference/
-│   ├── markers-ru.md         # Russian markers (general + tech-blog)
-│   ├── markers-en.md         # English markers (Wikipedia AI Cleanup)
-│   ├── human-signals.md      # human counter-signals
-│   ├── scoring.md            # scoring anchors and verdict bands
-│   ├── rewrite.md            # cleaning mode: "cliché → natural replacement" tables
-│   ├── markers-fiction.md    # fiction/prose tells + cleaning rules
-│   ├── markers-shortform.md  # YouTube / social / forum tells + registers
-│   └── structural-signals.md # burstiness, em-dash, copula-dodge, hard-tells
-├── examples/
-│   └── examples.md           # annotated samples for calibration
-├── scripts/
-│   ├── markers.mjs           # shared regex/heuristic for the tools (not the skill)
-│   └── scan.mjs              # batch triage: marker density across files
-├── eval/
-│   ├── cases.json            # labeled snippets (ai / human / mixed)
-│   └── run.mjs               # regression guard over the marker set
+│   ├── markers-ru.md         # AI-device catalogue (core principles)
+│   ├── markers-en.md         # same devices in English + EN specifics
+│   ├── markers-fiction.md    # fiction/prose devices + cleaning principles
+│   ├── markers-shortform.md  # YouTube / social / forum scaffolds + registers
+│   ├── structural-signals.md # burstiness, copula-dodge, hard-tells, behaviours
+│   ├── human-signals.md      # human counter-signals (principles)
+│   ├── scoring.md            # scoring anchors (a frame, not a formula)
+│   └── rewrite.md            # cleaning: registers + principles for stripping devices
 ├── validate.mjs             # spec validation for SKILL.md (no Python needed)
 └── CHANGELOG.md
 ```
 
-## Development & validation
+**Principle-only by design.** The skill describes the *devices* of AI text and
+reasons from them — no phrase dictionaries, no "❌ don't / ✅ do" examples, no
+deterministic regex layer. The capable model already knows the surface phrases;
+giving it criteria makes it generalise instead of pattern-matching.
 
-Repo tooling — no dependencies, Node 18+ (the skill itself needs none of this):
+## Validation
 
 ```bash
-node validate.mjs            # check SKILL.md against the Agent Skills spec
-node eval/run.mjs            # regression-guard the marker lists on labeled cases
-node scripts/scan.mjs docs/  # triage your own files by marker density
+node validate.mjs   # check SKILL.md against the Agent Skills spec (no deps)
 ```
 
-- `validate.mjs` mirrors what [`skills-ref`](https://agentskills.io/specification)
-  checks (name/description limits, field formats, referenced files) but needs no Python.
-- `eval/run.mjs` runs a **deterministic marker heuristic** (`scripts/markers.mjs`),
-  not the model. It guards the marker lists: if an edit breaks AI-vs-human
-  separation on the labeled set, it fails. The subtle "mixed" class (translation,
-  edited AI) is intentionally left to the model.
-- `scripts/scan.mjs` is **triage, not a verdict** — point it at *your* content.
-  Pointed at this repo's own `reference/` it will flag those files, because the
-  marker dictionaries literally quote the clichés they describe.
+`validate.mjs` mirrors what [`skills-ref`](https://agentskills.io/specification)
+checks (name/description limits, field formats, referenced files) without Python.
 
 ## What it does NOT do
 

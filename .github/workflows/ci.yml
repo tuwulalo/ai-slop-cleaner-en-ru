@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  validate-and-eval:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,5 +15,3 @@ jobs:
           node-version: "20"
       - name: Validate SKILL.md against the Agent Skills spec
         run: node validate.mjs
-      - name: Run marker-set regression eval
-        run: node eval/run.mjs
