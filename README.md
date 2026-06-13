@@ -24,6 +24,12 @@ It works in both languages. English tells follow Wikipedia's "Signs of AI writin
 Russian tells cover everyday clichés plus the Habr/vc.ru tech-blog style ("под
 капотом", "давайте разберёмся").
 
+**It detects the register first and rewrites within it.** Official press post,
+news, blog or forum comment — the skill figures out the tone up front and keeps it
+consistent: it won't leave casual slang in a formal announcement ("выкатила" →
+"представила"), and it won't flatten a lively forum comment into stiff officialese.
+Register consistency is treated as its own axis, separate from the AI-vs-human one.
+
 It also tells **decorative AI emoji** apart from **genuine human emoji**:
 
 - AI emoji = cold section markers prefixing headings/bullets (🚀 Launch, 💡 Key idea,
