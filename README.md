@@ -11,6 +11,21 @@ clichés into natural prose while preserving meaning, facts and terms — and it
 diagnoses "AI-likeness" (how machine-written a passage is, by which markers, with
 what confidence).
 
+## Demo
+
+**Screen text:**
+> "When it comes to performance, caching is not just useful, it's essential. Let's
+> dive in. Moreover, it scales. In conclusion, a seamless experience." 🚀
+>
+> → **Almost certainly AI (~95/100).** Tells: "not just… it's", "let's dive in",
+> the "moreover / in conclusion" cluster, a decorative emoji, zero specifics.
+
+**Clean text (register-aware):**
+> **before:** Moonshot just dropped a new model, you can spin it up locally.
+> **after:**&nbsp; Moonshot released a new model; you can run it locally.
+>
+> Formal register → slang normalized, every fact left intact.
+
 ## What it does
 
 Give it an article, forum post, PR description, essay or comment and it:
