@@ -69,8 +69,18 @@ rigid point-math — the skill is deliberately not boxed into a fixed template.
 - structure: the rule of three, uniform rhythm, boilerplate
   "Intro / Conclusion / Future prospects" sections, decorative emoji markers,
   empty upbeat endings;
+- **fiction/prose:** smell/temperature clichés ("Пахло X" / "the air smelled of X"),
+  filter words / telling-not-showing, purple prose, tidy symbolic endings;
+- **short-form/platform:** YouTube titles/scripts/comments, LinkedIn/X broetry,
+  forum comments — each with its own register and scaffold;
+- **structural signals** (survive synonym-swapping): low burstiness, em-dash density,
+  copula-dodge ("является" → "это"), connective-opener pile-ups — plus **forensic
+  hard-tells** (`oaicite`, `contentReference`, `utm_source=chatgpt`) as an instant flag;
 - and **human counter-signals** (typos, slang, personal numbers, argument, replies
   to other people, live reactive emoji) that lower the score.
+
+Cleaning is **self-verifying**: it re-runs its own detector on the output and won't
+return text that still trips it. Intensity levels: light / standard / deep.
 
 ## What the output looks like
 
@@ -133,7 +143,10 @@ ai-slop-cleaner-en-ru/
 │   ├── markers-en.md         # English markers (Wikipedia AI Cleanup)
 │   ├── human-signals.md      # human counter-signals
 │   ├── scoring.md            # scoring anchors and verdict bands
-│   └── rewrite.md            # cleaning mode: "cliché → natural replacement" tables
+│   ├── rewrite.md            # cleaning mode: "cliché → natural replacement" tables
+│   ├── markers-fiction.md    # fiction/prose tells + cleaning rules
+│   ├── markers-shortform.md  # YouTube / social / forum tells + registers
+│   └── structural-signals.md # burstiness, em-dash, copula-dodge, hard-tells
 ├── examples/
 │   └── examples.md           # annotated samples for calibration
 ├── scripts/

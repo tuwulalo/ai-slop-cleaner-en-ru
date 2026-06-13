@@ -33,6 +33,18 @@ export const MEDIUM = [
   ['en gloss', rx('\\((commonly|also|otherwise) known as|\\(a\\.?k\\.?a\\.?|\\(or simply|\\(for short')],
   ['ru colon-setup', rx('(^|\\n)\\s*(коротко|основание|суть|если коротко|что важно|по факту)\\s*:')],
   ['en colon-setup', rx('(^|\\n)\\s*(the short version|quick context|bottom line|here\'?s the thing)\\s*:')],
+  ['ru copula-dodge', rx('является|представляет собой|выступает в качестве|осуществляет')],
+  ['ru transition', rx('(^|\\n|\\. )\\s*(кроме того|более того|таким образом|в заключение)')],
+  ['fiction smell', rx('(^|\\n|\\. )\\s*(пахло|the air smelled of|the air was thick with)')],
+  ['fiction filter', rx('(почувствовал|ощутил|осознал),? как|felt a wave of|a shiver ran down|сердце ёкнуло|по спине пробежал холодок|в этот миг .{0,15}понял')],
+  ['yt boilerplate', rx('like and subscribe|smash that like|make sure to like|hit that bell|in this video,? we|here\'?s where it gets interesting|what does this mean for you|let\'?s get right into it|в этом видео мы разбер|ставьте лайк и подписыва|но обо всём по порядку')],
+  ['social announce', rx('i\'?m thrilled to announce|i\'?m humbled and honored|рад сообщить, что|с гордостью объявля')],
+  ['engagement bait', rx('(^|\\n)\\s*(agree|thoughts|согласны|а вы как считаете)\\?\\s*$')],
+];
+
+// Forensic hard-tells: literal chat-paste artifacts. Any hit => force "ai".
+export const HARD_TELL = [
+  ['hard-tell', rx('oaicite|contentReference|oai_citation|turn\\d+search\\d+|utm_source=chatgpt|:::')],
 ];
 
 // Near-certain chatbot artifacts (forces "ai")
@@ -71,7 +83,17 @@ export function analyze(text) {
   const strong = countSet(text, STRONG);
   const medium = countSet(text, MEDIUM);
   const chatbot = countSet(text, CHATBOT);
+  const hardTell = countSet(text, HARD_TELL);
   const counter = countSet(text, COUNTER);
+
+  // burstiness: low sentence-length variance => AI (only meaningful on longer text)
+  const sentLens = text.split(/[.!?…]+/).map(s => (s.trim().match(/\S+/g) || []).length).filter(n => n > 0);
+  let burst = 0;
+  if (words >= 120 && sentLens.length >= 5) {
+    const mean = sentLens.reduce((a, b) => a + b, 0) / sentLens.length;
+    const sd = Math.sqrt(sentLens.reduce((a, b) => a + (b - mean) ** 2, 0) / sentLens.length);
+    if (sd < 4) burst = 3; else if (sd > 7) burst = -3;
+  }
 
   // emoji: decorative (leads a line) vs inline (human)
   let deco = 0, inline = 0;
@@ -91,10 +113,10 @@ export function analyze(text) {
 
   const per100 = Math.max(1, words / 100);
   const density = (3 * strong.total + 2 * medium.total + 1.5 * deco + 1.2 * struct + 0.8 * emChat) / per100;
-  const net = density - 1.5 * counterScore;
+  const net = density - 1.5 * counterScore + burst;
 
   let band;
-  if (chatbot.total > 0) band = 'ai';
+  if (chatbot.total > 0 || hardTell.total > 0) band = 'ai';
   else if (net >= 6) band = 'ai';
   else if (net >= 2.5) band = 'mixed';
   else band = 'human';
@@ -106,8 +128,9 @@ export function analyze(text) {
     words, band, lowConfidence,
     density: +density.toFixed(1), net: +net.toFixed(1),
     strong: strong.total, medium: medium.total, chatbot: chatbot.total,
+    hardTell: hardTell.total, burst,
     counter: counterScore, decoEmoji: deco, inlineEmoji: inline,
     paraBreaks: struct, emDash: emChat,
-    topHits,
+    topHits: [...hardTell.hits, ...strong.hits, ...chatbot.hits, ...medium.hits].slice(0, 4),
   };
 }
