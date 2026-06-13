@@ -3,6 +3,8 @@
 
 # ai-slop-cleaner-en-ru
 
+[![CI](https://github.com/tuwulalo/ai-slop-cleaner-en-ru/actions/workflows/ci.yml/badge.svg)](https://github.com/tuwulalo/ai-slop-cleaner-en-ru/actions/workflows/ci.yml)
+
 **Чистильщик и детектор ИИ-сгенерированного текста для Claude Code / Claude Agent SDK.**
 Двуязычный (EN + RU) скилл: главное — **вычищает ИИ из текста**, переписывая штампы
 на живой язык с сохранением смысла, фактов и терминов; а также ставит диагноз

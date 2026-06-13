@@ -4,6 +4,7 @@
 All notable changes, newest first.
 
 ## 1.4.0
+- CI: GitHub Actions (`.github/workflows/ci.yml`) гоняет `validate.mjs` + `eval/run.mjs` на каждый push/PR.
 - Добавлен `validate.mjs` — самопроверка SKILL.md по спецификации Agent Skills (без Python; `node validate.mjs`).
 - Добавлен `scripts/scan.mjs` — пакетный скан-триаж: считает плотность маркеров по файлам/папке.
 - Добавлен `scripts/markers.mjs` — общий набор regex-маркеров и эвристика band'а для инструментов.
