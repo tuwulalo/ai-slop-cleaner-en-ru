@@ -12,6 +12,8 @@ co-occurrence (see `scoring.md`). Weight noted per category.
 - "marks a turning point", "represents a shift", "underscores its importance"
 - "leaves a lasting/indelible mark", "in the ever-evolving landscape of"
 - "reflects a broader", "setting the stage for", "deeply rooted"
+- transition/scaffolding clichés: "when it comes to", "in conclusion",
+  "let's dive in / let's explore", "in the realm of"
 
 > Why: pads importance instead of stating the fact.
 
@@ -129,6 +131,7 @@ just use the nickname or drop it casually, without a bookish "(commonly known as
 \b(testament|pivotal|crucial|delve|intricate|tapestry|seamless|robust)\b
 \b(moreover|furthermore|additionally)\b
 stands as|serves as|plays a (vital|crucial|key|pivotal) role
+when it comes to|in conclusion|let'?s (dive|explore)|in the realm of
 experts believe|studies show|it is widely regarded
 \b(certainly|of course)!|i hope this helps|great question
 ever-evolving|lasting (impact|legacy)|future looks bright

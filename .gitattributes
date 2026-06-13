@@ -1,0 +1,5 @@
+# Normalize line endings — stop the LF/CRLF churn across platforms.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
