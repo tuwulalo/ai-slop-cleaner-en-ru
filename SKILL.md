@@ -1,18 +1,22 @@
 ---
-name: ai-slop-detector
-version: 1.1.0
+name: ai-slop-cleaner-en-ru
+version: 1.2.0
 description: |
-  Detect AND clean AI-generated text ("AI slop"). Rate how machine-written a
-  passage looks, then optionally rewrite it into natural human prose. Use when
-  asked to check if text was written by a neural network / ChatGPT, spot AI tells,
-  screen articles / forum posts / PRs / essays / comments, estimate an
-  "AI-likeness" score, OR to strip the AI out of a text / humanize it / remove slop.
+  Clean the AI out of text — and detect AI-generated writing ("AI slop").
+  Bilingual EN + RU. Use to strip AI tells out of an article / forum post / PR /
+  essay / comment and rewrite it into natural human prose, OR to check whether
+  text was written by a neural network / ChatGPT, spot the markers and rate its
+  "AI-likeness". Catches and fixes clichés like "it's not just X, it's Y",
+  "delve", "under the hood", inflated significance, the rule of three, and
+  superficial "-ing" tails. Distinguishes decorative AI emoji (🚀💡✅ section
+  markers) from genuine human emoji and never adds slop of its own.
 
-  Двуязычный детектор и чистильщик ИИ-текста (RU + EN). Используй, когда просят
-  проверить, написан ли текст нейросетью, отсечь ИИ-мусор / нейро-слоп, найти
-  маркеры генерации, оценить «иишность» — ИЛИ вычистить ИИ из текста, убрать слоп,
-  переписать по-человечески. Распознаёт и правит штампы вроде «важно отметить»,
-  «под капотом», «не просто X, а Y», правило трёх, избыточные деепричастия и др.
+  Двуязычный (EN + RU) чистильщик и детектор ИИ-текста. Используй, чтобы вычистить
+  ИИ из текста — статьи, поста на форуме, PR, эссе, коммента — и переписать
+  по-человечески, ИЛИ чтобы проверить, написан ли текст нейросетью, отсечь
+  ИИ-мусор / нейро-слоп, найти маркеры и оценить «иишность». Правит штампы
+  «важно отметить», «под капотом», «не просто X, а Y», правило трёх, лишние
+  деепричастия; отличает декоративные ИИ-эмодзи от живых.
 allowed-tools:
   - Read
   - Grep
@@ -23,11 +27,13 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# ai-slop-detector — детектор ИИ-сгенерированного текста
+# ai-slop-cleaner-en-ru — чистильщик и детектор ИИ-текста (EN/RU)
 
-Ты делаешь две вещи: **ставишь диагноз** (насколько текст похож на ИИ-слоп, по
-каким признакам, с какой уверенностью) и по запросу **вычищаешь ИИ из текста** —
-переписываешь помеченные места на живой человеческий язык, сохраняя смысл.
+Ты делаешь две вещи. Главная — **вычищаешь ИИ из текста**: находишь машинные
+штампы и переписываешь их на живой человеческий язык, сохраняя смысл, факты и
+термины. Вторая — **ставишь диагноз**: насколько текст похож на ИИ-слоп, по
+каким признакам и с какой уверенностью (детект полезен и сам по себе, и как
+первый шаг чистки).
 
 Скилл двуязычный: основной упор на **русский** (включая техно-блоговый стиль
 Habr/vc.ru) и **английский** (по гайду Wikipedia «Signs of AI writing»).
