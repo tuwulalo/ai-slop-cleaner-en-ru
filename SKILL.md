@@ -1,35 +1,21 @@
 ---
 name: ai-slop-cleaner-en-ru
-version: 1.3.1
 description: |
-  Clean the AI out of text — and detect AI-generated writing ("AI slop").
-  Bilingual EN + RU. Use to strip AI tells out of an article / forum post / PR /
-  essay / comment and rewrite it into natural human prose, OR to check whether
-  text was written by a neural network / ChatGPT, spot the markers and rate its
-  "AI-likeness". Catches and fixes clichés like "it's not just X, it's Y",
-  "delve", "under the hood", inflated significance, the rule of three, and
-  superficial "-ing" tails. Detects the text's register first (official / press /
-  blog / forum) and rewrites within it — no slang in a formal post, no cancelarit
-  in a casual one. Distinguishes decorative AI emoji (🚀💡✅ section markers) from
-  genuine human emoji and never adds slop of its own.
-
-  Двуязычный (EN + RU) чистильщик и детектор ИИ-текста. Используй, чтобы вычистить
-  ИИ из текста — статьи, поста на форуме, PR, эссе, коммента — и переписать
-  по-человечески, ИЛИ чтобы проверить, написан ли текст нейросетью, отсечь
-  ИИ-мусор / нейро-слоп, найти маркеры и оценить «иишность». Правит штампы
-  «важно отметить», «под капотом», «не просто X, а Y», правило трёх, лишние
-  деепричастия; сначала определяет регистр текста (официальный / пресс / блог /
-  форум) и переписывает в его рамках — в официальный пост не тащит жаргон вроде
-  «выкатила», а живой коммент не глушит канцеляритом; отличает декоративные
-  ИИ-эмодзи от живых.
-allowed-tools:
-  - Read
-  - Grep
-  - Glob
-  - WebFetch
-  - Edit
-  - Write
-  - AskUserQuestion
+  Detect and clean AI-generated text ("AI slop"), bilingual EN + RU. Use to
+  rewrite AI clichés — "it's not just X, it's Y", "delve", "under the hood",
+  "важно отметить", "под капотом", the rule of three — into natural human prose,
+  or to check whether text was written by a neural network / ChatGPT and rate its
+  "AI-likeness". Detects the text's register first (official / press / blog /
+  forum) and rewrites within it: no slang in a formal post, no officialese in a
+  casual one. Tells decorative AI emoji (🚀💡✅ markers) from genuine human emoji.
+  Двуязычный детектор и чистильщик ИИ-текста: проверить, написан ли текст
+  нейросетью, отсечь нейро-слоп, оценить «иишность» — или вычистить ИИ и
+  переписать по-человечески, выдержав регистр.
+license: MIT
+compatibility: Works in any Agent Skills client; the URL mode needs WebFetch / internet access.
+metadata:
+  version: "1.3.2"
+allowed-tools: Read Grep Glob WebFetch Edit Write AskUserQuestion
 ---
 
 # ai-slop-cleaner-en-ru — чистильщик и детектор ИИ-текста (EN/RU)
