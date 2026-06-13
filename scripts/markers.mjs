@@ -31,6 +31,8 @@ export const MEDIUM = [
   ['en conj', rx('\\b(moreover|furthermore|additionally)\\b|\\bin conclusion\\b')],
   ['en vague-src', rx('experts believe|studies show|it is widely regarded')],
   ['en gloss', rx('\\((commonly|also|otherwise) known as|\\(a\\.?k\\.?a\\.?|\\(or simply|\\(for short')],
+  ['ru colon-setup', rx('(^|\\n)\\s*(коротко|основание|суть|если коротко|что важно|по факту)\\s*:')],
+  ['en colon-setup', rx('(^|\\n)\\s*(the short version|quick context|bottom line|here\'?s the thing)\\s*:')],
 ];
 
 // Near-certain chatbot artifacts (forces "ai")
@@ -81,8 +83,14 @@ export function analyze(text) {
   }
   let counterScore = counter.total + inline;
 
+  // short-message form tells: blank-line paragraphing + em dash in a short text
+  const shortMsg = words < 150;
+  const paraBreaks = (text.match(/\n[ \t]*\n/g) || []).length;
+  const struct = (shortMsg && paraBreaks >= 2) ? paraBreaks : 0;
+  const emChat = shortMsg ? Math.min(3, (text.match(/—/g) || []).length) : 0;
+
   const per100 = Math.max(1, words / 100);
-  const density = (3 * strong.total + 2 * medium.total + 1.5 * deco) / per100;
+  const density = (3 * strong.total + 2 * medium.total + 1.5 * deco + 1.2 * struct + 0.8 * emChat) / per100;
   const net = density - 1.5 * counterScore;
 
   let band;
@@ -99,6 +107,7 @@ export function analyze(text) {
     density: +density.toFixed(1), net: +net.toFixed(1),
     strong: strong.total, medium: medium.total, chatbot: chatbot.total,
     counter: counterScore, decoEmoji: deco, inlineEmoji: inline,
+    paraBreaks: struct, emDash: emChat,
     topHits,
   };
 }

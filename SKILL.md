@@ -14,7 +14,7 @@ description: |
 license: MIT
 compatibility: Works in any Agent Skills client; the URL mode needs WebFetch / internet access.
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 allowed-tools: Read Grep Glob WebFetch Edit Write AskUserQuestion
 ---
 

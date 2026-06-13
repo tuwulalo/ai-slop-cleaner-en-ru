@@ -124,6 +124,36 @@ just use the nickname or drop it casually, without a bookish "(commonly known as
 
 ---
 
+## 11. Short-message formatting (chat / DM / email) — WEIGHT HIGH in that context
+
+In a short personal message (a DM, a Slack/Telegram note, an email to a boss/
+colleague) the AI gives itself away through **form**, not words — everything is too
+neat and groomed:
+
+- **colon setup "X: <list/explanation>"** — "The short version:", "Quick context:",
+  "Here's the thing:", "Bottom line:". People rarely set up a casual message with a colon — they just say it.
+- **a blank line between every paragraph** in a short message — the AI splits even a
+  three-sentence DM into tidy blocks. People text in one block or a single line
+  break, not a double break after every paragraph.
+- **the three-act template:** "greeting + ask → justification with a rule-of-three →
+  polite CTA" ("Hi X, I'd like to discuss… / I shipped A, B and C / let me know what
+  works"). Very AI for a short message.
+- **em dash as a "dramatic pause"** in casual text.
+- **perfect numeric typography** — "20–30 min", "+20%" with a real en-dash, where
+  people type "20-30", "20%".
+- **tidy formulaic closers** — "Happy to discuss further", "Let me know what works
+  for you", "Looking forward to your thoughts".
+
+> Why: in a short personal message the AI compensates for missing voice with perfect
+> form. A human writes rougher — one block, no colon setups, a plain dash or comma,
+> often no separate call-to-action at all.
+>
+> **Register nuance (critical):** this is for chat/DM/email, not articles (where
+> paragraph breaks and colons are normal). Context decides: a personal message is
+> not a longread.
+
+---
+
 ## Quick Grep hooks (batch triage, not verdict)
 
 ```
