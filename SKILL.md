@@ -1,6 +1,6 @@
 ---
 name: ai-slop-cleaner-en-ru
-version: 1.3.0
+version: 1.3.1
 description: |
   Clean the AI out of text — and detect AI-generated writing ("AI slop").
   Bilingual EN + RU. Use to strip AI tells out of an article / forum post / PR /

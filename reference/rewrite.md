@@ -89,6 +89,7 @@ invent content.
 | Конечно! / Отличный вопрос! / Вы абсолютно правы | удалить |
 | быстро, удобно и надёжно (тройка) | оставить одно точное: «быстро» или «надёжно» |
 | Будущее выглядит многообещающим | конкретный план/факт: «дальше — <что>» |
+| (в обиходе „X") / (он же X) / (или просто X) / (также известна как X) | убрать глоссу; если прозвище реально нужно — ввести его в речи без скобочной расшифровки |
 
 ---
 
@@ -137,6 +138,7 @@ invent content.
 | experts believe / studies show (no cite) | name who/where, or "I think", or cut |
 | I hope this helps / Great question! | delete |
 | the future looks bright | a concrete next step |
+| (commonly known as X) / (a.k.a. X) / (or simply X) | drop the gloss; if the nickname matters, work it in naturally, no bracketed aside |
 
 > Register applies in English too: in a formal/press piece, normalize slang
 > ("they dropped a new model" → "they released", "spin it up locally" → "run it

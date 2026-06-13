@@ -103,6 +103,25 @@ High-frequency post-2023 words that co-occur:
 
 ---
 
+## 10. Encyclopedic parenthetical glosses — WEIGHT MEDIUM
+
+A bracketed aside that spells out a nickname / common name / synonym like a
+dictionary entry. Reads AI-ish, especially in a formal piece — real people either
+just use the nickname or drop it casually, without a bookish "(commonly known as)".
+
+- "(commonly known as X)", "(also known as / a.k.a. X)", "(colloquially X)"
+- "(or simply X)", "(for short, X)", "(often called X)"
+- "(as the community calls it)"
+- general template: `(<filler> + name/nickname)` added for "completeness", not need
+
+> Why: an encyclopedic reflex — gloss every name. One in a news/official post
+> already shows. **Register nuance:** strong tell in formal/news text; a light
+> casual aside in a blog/forum ("everyone just calls it kimi") is fine — don't
+> penalize. It's the stiff bookish "(commonly known as …)" that's the tell, not
+> the nickname itself. When cleaning, drop it or introduce the nickname naturally.
+
+---
+
 ## Quick Grep hooks (batch triage, not verdict)
 
 ```
@@ -113,4 +132,5 @@ stands as|serves as|plays a (vital|crucial|key|pivotal) role
 experts believe|studies show|it is widely regarded
 \b(certainly|of course)!|i hope this helps|great question
 ever-evolving|lasting (impact|legacy)|future looks bright
+\((commonly|also|otherwise) known as|\(a\.?k\.?a\.?|\(or simply|\(for short
 ```
