@@ -99,15 +99,21 @@ function gate(target) {
   const files = statSync(target).isDirectory() ? listFiles(target) : [target];
   let bad = 0;
   for (const f of files) {
-    const r = analyze(readFileSync(f, 'utf8'));
-    if (r.hard > 0 || r.strongDistinct >= 2) {                                 // co-occurrence gate
+    const text = readFileSync(f, 'utf8');
+    const emdash = (text.match(/—/g) || []).length;          // STRICT: zero em dash in output
+    const r = analyze(text);
+    const reasons = [];
+    if (emdash > 0) reasons.push(`em dash banned (x${emdash})`);
+    if (r.hard > 0) reasons.push(`hard=${r.hard}`);
+    if (r.strongDistinct >= 2) reasons.push(`strong distinct=${r.strongDistinct}`);
+    if (reasons.length) {
       bad++;
-      console.log(`FAIL ${f.split(/[\\/]/).pop()} — hard=${r.hard} strong(distinct)=${r.strongDistinct}`);
+      console.log(`FAIL ${f.split(/[\\/]/).pop()}: ${reasons.join(', ')}`);
       for (const h of r.hits.filter((x) => x.severity !== 'weak')) console.log(`     [${h.severity}] ${h.id} «${h.sample}»`);
     }
   }
-  if (bad) { console.log(`\nGATE FAILED: ${bad} file(s) carry a hard tell or >=2 distinct strong markers.`); process.exit(1); }
-  console.log('\nGATE PASSED: no hard tell, no strong co-occurrence.');
+  if (bad) { console.log(`\nGATE FAILED: ${bad} file(s). Strict rules: zero em dash, no hard tell, <2 distinct strong markers.`); process.exit(1); }
+  console.log('\nGATE PASSED: no em dash, no hard tell, no strong co-occurrence.');
 }
 
 function self() {
