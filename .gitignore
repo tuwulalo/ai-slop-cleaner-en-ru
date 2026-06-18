@@ -1,4 +1,4 @@
-# research scratch — never commit scraped corpus or binaries
+# research scratch: never commit scraped corpus or binaries
 corpus/
 findings/
 *.info.json
