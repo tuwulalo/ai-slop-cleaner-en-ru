@@ -31,6 +31,9 @@ disclaimers, training-cutoff caveats) — near-proof; flawless form with zero vo
 ## Emoji, register, calibration
 
 Same as the core: only the decorative section-marker emoji pattern is a tell;
-inline reactive emoji count toward a human. Dry technical/scientific style is the
-genre, not generation — what decides is significance-padding and filler, not
-formality. The full reasoning lives in `markers-ru.md` and `SKILL.md`.
+inline reactive emoji count toward a human. ASCII emoticons `:) :-) :(` and leftover
+platform shortcodes are a human counter-signal. Em dash and curly/guillemet quotes are
+tells **only in casual registers** (people don't type proper typography on a phone), not
+in edited prose/press. Dry technical/scientific style is the genre, not generation — what
+decides is significance-padding and filler, not formality. Register detection and the full
+reasoning live in `registers.md`, `markers-ru.md` and `SKILL.md`.

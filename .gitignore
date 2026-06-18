@@ -1,0 +1,7 @@
+# research scratch — never commit scraped corpus or binaries
+corpus/
+findings/
+*.info.json
+*.exe
+node_modules/
+.DS_Store
